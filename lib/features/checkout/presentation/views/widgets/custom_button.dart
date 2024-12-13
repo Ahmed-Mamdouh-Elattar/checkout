@@ -2,9 +2,11 @@ import 'package:checkout/core/config/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, this.onPressed, required this.text});
+  const CustomButton(
+      {super.key, this.onPressed, required this.text, this.isLoading = false});
   final void Function()? onPressed;
   final String text;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -16,10 +18,12 @@ class CustomButton extends StatelessWidget {
       color: const Color(0xff34A853),
       padding: EdgeInsets.zero,
       onPressed: onPressed,
-      child: Text(
-        text,
-        style: AppTextStyles.textStyleMedium22,
-      ),
+      child: isLoading
+          ? CircularProgressIndicator()
+          : Text(
+              text,
+              style: AppTextStyles.textStyleMedium22,
+            ),
     );
   }
 }

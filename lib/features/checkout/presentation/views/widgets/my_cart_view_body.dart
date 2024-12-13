@@ -1,10 +1,12 @@
 import 'package:checkout/core/config/app_text_styles.dart';
 import 'package:checkout/core/config/assets.dart';
+import 'package:checkout/features/checkout/presentation/manager/checkout_ccubit/checkout_cubit.dart';
 
 import 'package:checkout/features/checkout/presentation/views/widgets/choose_payment_method_bottom_sheet.dart';
 import 'package:checkout/features/checkout/presentation/views/widgets/custom_button.dart';
 import 'package:checkout/features/checkout/presentation/views/widgets/text_key_and_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyCartViewBody extends StatelessWidget {
   const MyCartViewBody({super.key});
@@ -61,7 +63,10 @@ class MyCartViewBody extends StatelessWidget {
               showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const ChoosePaymentMethodBottomSheet();
+                    return BlocProvider(
+                      create: (context) => CheckoutCubit(),
+                      child: const ChoosePaymentMethodBottomSheet(),
+                    );
                   });
             },
           ),
